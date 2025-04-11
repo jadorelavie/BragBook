@@ -43,7 +43,7 @@ struct DetailView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle("Celebrate!")
+        .navigationTitle("Kudos!")
         .toolbar {
             Button("Edit") {
                 showingEdit = true

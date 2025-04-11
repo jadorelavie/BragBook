@@ -13,8 +13,9 @@ struct BragBookApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.font, .custom("Futura", size: 18))
                 .modelContainer(for: Item.self)
-        }
+                .environment(\.font, .custom("GillSans-Regular", size: 16))
+                .foregroundColor(Color(hex: "#1f3c6b"))
+            }
     }
 }

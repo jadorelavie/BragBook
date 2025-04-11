@@ -58,6 +58,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteItems)
             }
             .navigationTitle("BragBook")
+                .appTitleStyle()
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             // For macOS, use a sheet for item input.
@@ -76,9 +77,10 @@ struct ContentView: View {
 #endif
             .toolbar {
 #if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
+               // ToolbarItem(placement: //
+            //  .navigationBarTrailing) {
+               //     EditButton()
+               // }
 #endif
                 ToolbarItem {
                     Button(action: { showAddItemAlert.wrappedValue = true }) {

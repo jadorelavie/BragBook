@@ -9,6 +9,7 @@ struct EditItemView: View {
     @State private var editedTitle: String
     @State private var editedDetails: String
     @State private var editedTags: String
+    @State private var editedAccomplishmentDate: Date
     @State private var editedOutcome: String
     @State private var editedImpact: Int?
     @State private var editedReviewDate: Date?
@@ -18,6 +19,7 @@ struct EditItemView: View {
         _editedTitle = State(initialValue: item.title)
         _editedDetails = State(initialValue: item.details)
         _editedTags = State(initialValue: item.tags.joined(separator: ", "))
+        _editedAccomplishmentDate = State(initialValue: item.accomplishmentDate)
         _editedOutcome = State(initialValue: item.outcome ?? "")
         _editedImpact = State(initialValue: item.impact)
         _editedReviewDate = State(initialValue: item.reviewDate)
@@ -32,27 +34,24 @@ struct EditItemView: View {
                         .lineLimit(5, reservesSpace: true)
                 }
                 
-                Section("Outcome") {
-                    TextField("Outcome", text: $editedOutcome)
-                }
-                
-                Section("Tags") {
-                    TextField("Tags (comma-separated)", text: $editedTags)
-                }
-                
-                Section("Impact") {
-                    Picker("Impact", selection: $editedImpact) {
-                        Text("Unset").tag(nil as Int?)
-                        Text("0 - Negative").tag(0 as Int?)
-                        Text("1 - Individual").tag(1 as Int?)
-                        Text("2 - Team").tag(2 as Int?)
-                        Text("3 - Department").tag(3 as Int?)
-                        Text("4 - Organization").tag(4 as Int?)
-                        Text("5 - Beyond Organization").tag(5 as Int?)
+           
+                Section("Accomplishment") {
+                    DatePicker("Date", selection: $editedAccomplishmentDate, displayedComponents: .date)
+                    Picker("Impact", selection: Binding<Int>(
+                        get: { editedImpact ?? -1 },
+                        set: { editedImpact = $0 == -1 ? nil : $0 }
+                    )) {
+                        Text("TBD").tag(-1)
+                        Text("0 – Negative").tag(0)
+                        Text("1 – Individual").tag(1)
+                        Text("2 – Team").tag(2)
+                        Text("3 – Department").tag(3)
+                        Text("4 – Organization").tag(4)
+                        Text("5 – Beyond Organization").tag(5)
                     }
-                }
-                
-                Section("Review Date") {
+                    .pickerStyle(MenuPickerStyle())
+                    TextField("Outcome", text: $editedOutcome, axis: .vertical)
+                        .lineLimit(5, reservesSpace: true)
                     DatePicker("Review Date", selection: Binding<Date>(
                         get: { editedReviewDate ?? Date() },
                         set: { editedReviewDate = $0 }
@@ -62,6 +61,10 @@ struct EditItemView: View {
                         editedReviewDate = nil
                     }
                     .foregroundColor(.red)
+                }
+                
+                Section("Tags") {
+                    TextField("Tags (comma-separated)", text: $editedTags)
                 }
             }
             .navigationTitle("Edit Item")

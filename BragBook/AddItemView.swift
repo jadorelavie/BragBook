@@ -24,22 +24,17 @@ struct AddItemView: View {
             Form {
                 Section("Basic Information") {
                     TextField("Title", text: $newTitle)
-                    TextField("Details", text: $newDetails)
+                    TextField("Details", text: $newDetails, axis: .vertical)
+                        .lineLimit(5, reservesSpace: true)
                 }
                 
-                Section("Accomplishment Date") {
-                    DatePicker("Accomplishment Date", selection: Binding<Date>(
-                        get: { newAccomplishmentDate },
-                        set: { newAccomplishmentDate = $0 }
-                    ), displayedComponents: .date)
-                }
-
-                Section("Impact") {
-                    Picker("Impact", selection: Binding(
+                Section("Accomplishment") {
+                    DatePicker("Date", selection: $newAccomplishmentDate, displayedComponents: .date)
+                    Picker("Impact", selection: Binding<Int>(
                         get: { newImpact ?? -1 },
                         set: { newImpact = $0 == -1 ? nil : $0 }
                     )) {
-                        Text("Unset").tag(-1)
+                        Text("TBD").tag(-1)
                         Text("0 – Negative").tag(0)
                         Text("1 – Individual").tag(1)
                         Text("2 – Team").tag(2)
@@ -48,15 +43,12 @@ struct AddItemView: View {
                         Text("5 – Beyond Organization").tag(5)
                     }
                     .pickerStyle(MenuPickerStyle())
-                }
-                
-                Section("Outcome") {
-                    TextField("Outcome", text: $newOutcome)
-                }
-                
-                
-                Section("Review Date") {
-                    DatePicker("Accomplishment Date", selection: $newAccomplishmentDate, displayedComponents: .date)
+                    TextField("Outcome", text: $newOutcome, axis: .vertical)
+                        .lineLimit(5, reservesSpace: true)
+                    DatePicker("Review Date", selection: Binding<Date>(
+                        get: { newReviewDate ?? Date() },
+                        set: { newReviewDate = $0 }
+                    ), displayedComponents: .date)
                     
                     Button("Clear Review Date") {
                         newReviewDate = nil
@@ -72,7 +64,7 @@ struct AddItemView: View {
             
             
             
-            .navigationTitle("Add New Item")
+            .navigationTitle("Why The Celebration?")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save", action: onSave)
