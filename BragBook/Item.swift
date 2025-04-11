@@ -35,7 +35,7 @@ class Item {
         self.tags = tags
         self.impact = impact
         self.reviewDate = reviewDate
-        self.accomplishmentDate = Date()
+        self.accomplishmentDate = accomplishmentDate
         self.outcome = outcome
     }
 }

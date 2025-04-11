@@ -24,7 +24,11 @@ struct ContentView: View {
     
     @State private var newTitle: String = ""
     @State private var newDetails: String = ""
+    @State private var newOutcome: String = ""
     @State private var newTags: String = ""
+    @State private var newImpact: Int?
+    @State private var newReviewDate: Date? = nil
+    @State private var newAccomplishmentDate = Date()
     
     // Custom initializer to optionally inject an external binding (for testing).
     // When not testing, you can simply call ContentView() and it will use its own internal state.
@@ -82,18 +86,24 @@ struct ContentView: View {
                     }
                 }
             }
-#if os(iOS)
-            // For iOS, present an alert with text fields.
-            .alert("Add New Item", isPresented: showAddItemAlert) {
-                TextField("Title", text: $newTitle)
-                TextField("Details", text: $newDetails)
-                TextField("Tags (comma-separated)", text: $newTags)
-                Button("Save", action: saveItem)
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text("Enter a title and details for your new item.")
+            .sheet(isPresented: showAddItemAlert) {
+                AddItemView(
+                    newTitle: $newTitle,
+                    newDetails: $newDetails,
+                    newOutcome: $newOutcome,
+                    newTags: $newTags,
+                    newImpact: $newImpact,
+                    newReviewDate: $newReviewDate,
+                    newAccomplishmentDate: $newAccomplishmentDate,
+                    onSave: {
+                        saveItem()
+                        showAddItemAlert.wrappedValue = false
+                    },
+                    onCancel: {
+                        showAddItemAlert.wrappedValue = false
+                    }
+                )
             }
-#endif
         } detail: {
             Text("Hello, World!")
         }
@@ -106,12 +116,22 @@ struct ContentView: View {
                 title: newTitle,
                 details: newDetails,
                 tags: newTags.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) },
- 
+                impact: newImpact,
+                reviewDate: newReviewDate,
+                accomplishmentDate: newAccomplishmentDate,
+                outcome: newOutcome
             )
+            
             modelContext.insert(newItem)
+            
+            // Clear inputs after saving
             newTitle = ""
             newDetails = ""
+            newOutcome = ""
             newTags = ""
+            newImpact = nil
+            newReviewDate = nil
+            newAccomplishmentDate = Date()
         }
     }
     
