@@ -17,9 +17,8 @@ struct DetailView: View {
             Text(item.title).font(.title)
             Text(item.details)
                     
-            if let impact = item.impact {
-                Text("Impact: \(impactDescription(impact))")
-            }
+            Text("Accomplished on \(item.accomplishmentDate.formatted())")
+                            .foregroundColor(.gray)
             
             if let outcome = item.outcome {
                 HStack {
@@ -30,9 +29,10 @@ struct DetailView: View {
                 }
             }
             
-            Text("Accomplished on \(item.accomplishmentDate.formatted())")
-                            .foregroundColor(.gray)
-                        
+            if let impact = item.impact {
+                Text("Impact: \(impactDescription(impact))")
+            }
+                                    
             if let reviewDate = item.reviewDate {
                 Text("Review Date: \(reviewDate.formatted(.dateTime.month().day().year()))")
             }

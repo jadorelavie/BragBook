@@ -64,7 +64,7 @@ struct AddItemView: View {
             
             
             
-            .navigationTitle("Why The Celebration?")
+            .navigationTitle("Why The Party?")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save", action: onSave)

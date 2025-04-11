@@ -57,8 +57,9 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteItems)
             }
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
             .navigationTitle("BragBook")
-                .appTitleStyle()
 #if os(macOS)
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             // For macOS, use a sheet for item input.
