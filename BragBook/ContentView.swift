@@ -46,7 +46,7 @@ struct ContentView: View {
                         VStack(alignment: .leading) {
                             Text(item.title)
                                 .font(.headline)
-                            Text("Created on \(item.creationDate.formatted(.dateTime.month().day().year()))")
+                            Text(" \(item.accomplishmentDate.formatted(date: .long, time: .omitted))")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                             Text(item.tags.joined(separator: ", "))

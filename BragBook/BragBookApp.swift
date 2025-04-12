@@ -39,15 +39,15 @@ func setupNavigationBarAppearance() {
     appearance.backgroundColor = .white
     
     // Set title text attributes (Gill Sans Bold, 32pt, Dark Teal)
-    // Convert hex color #0e4a47 to RGB: (14/255, 74/255, 71/255)
+    // Convert hex color #1F3C6B to RGB: (0/255, 135/255, 172/255)
     appearance.titleTextAttributes = [
-        .foregroundColor: UIColor(red: 14/255, green: 74/255, blue: 71/255, alpha: 1.0),
+        .foregroundColor: UIColor(red: 0/255, green: 135/255, blue: 172/255, alpha: 1.0),
         .font: UIFont(name: "Futura", size: 32)!
     ]
     
     // Set large title text attributes (Gill Sans Bold, 40pt, Dark Teal)
     appearance.largeTitleTextAttributes = [
-        .foregroundColor: UIColor(red: 14/255, green: 74/255, blue: 71/255, alpha: 1.0),
+        .foregroundColor: UIColor(red: 0/255, green: 135/255, blue: 172/255, alpha: 1.0),
         .font: UIFont(name: "Futura", size: 40)!
     ]
     

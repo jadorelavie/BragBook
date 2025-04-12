@@ -15,12 +15,15 @@ struct DetailView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text(item.title).font(.title)
-            Text(item.details)
-                    
-            Text("Accomplished on \(item.accomplishmentDate.formatted())")
+
+            Text(" \(item.accomplishmentDate.formatted(date: .long, time: .omitted))")
                             .foregroundColor(.gray)
+            Text(item.details)
             
-            if let outcome = item.outcome {
+            if let impact = item.impact {
+                Text("Impact: \(impactDescription(impact))")
+            }
+            if let outcome = item.outcome, !outcome.isEmpty {
                 HStack {
                     Text("Outcome:")
                         .font(.headline)
@@ -28,18 +31,15 @@ struct DetailView: View {
                         .font(.body)
                 }
             }
-            
-            if let impact = item.impact {
-                Text("Impact: \(impactDescription(impact))")
-            }
-                                    
+                                               
             if let reviewDate = item.reviewDate {
                 Text("Review Date: \(reviewDate.formatted(.dateTime.month().day().year()))")
             }
             
-            Text("Tags: \(item.tags.joined(separator: ", "))")
-                .foregroundColor(.gray)
-            
+            if !item.tags.isEmpty {
+                Text("Tags: \(item.tags.joined(separator: ", "))")
+                    .foregroundColor(.gray)
+            }
             Spacer()
         }
         .padding()
@@ -56,12 +56,12 @@ struct DetailView: View {
 
     private func impactDescription(_ impact: Int) -> String {
         switch impact {
-        case 0: return "Negative"
-        case 1: return "Individual"
-        case 2: return "Team"
-        case 3: return "Department"
-        case 4: return "Organization"
-        case 5: return "Beyond Organization"
+        case 0: return "Detrimental"
+        case 1: return "Helped at Individual Level"
+        case 2: return "Helped at Team Level"
+        case 3: return "Helped at Department Level"
+        case 4: return "Helped at Organization Level"
+        case 5: return "Helped Beyond Organization"
         default: return "TBD"
         }
     }
