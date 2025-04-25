@@ -19,7 +19,6 @@ struct BragBookApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(for: Item.self)
-                .globalTopPadding()
                 .environment(\.font, .custom("GillSans-Regular", size: 16))
                 .foregroundColor(Color(hex: "#1f3c6b"))
             }
@@ -38,14 +37,14 @@ func setupNavigationBarAppearance() {
     // Set background color (e.g., white; adjust if needed)
     appearance.backgroundColor = .white
     
-    // Set title text attributes (Gill Sans Bold, 32pt, Dark Teal)
-    // Convert hex color #1F3C6B to RGB: (0/255, 135/255, 172/255)
+    // Set title text attributes (Futura, 32pt, Galaxy Blue)
+    // Hex color #1f3c6b = RGB(31, 60, 107)
     appearance.titleTextAttributes = [
         .foregroundColor: UIColor(red: 0/255, green: 135/255, blue: 172/255, alpha: 1.0),
         .font: UIFont(name: "Futura", size: 32)!
     ]
     
-    // Set large title text attributes (Gill Sans Bold, 40pt, Dark Teal)
+    // Set large title text attributes (Futura, 40pt, Galaxy Blue)
     appearance.largeTitleTextAttributes = [
         .foregroundColor: UIColor(red: 0/255, green: 135/255, blue: 172/255, alpha: 1.0),
         .font: UIFont(name: "Futura", size: 40)!

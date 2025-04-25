@@ -16,8 +16,9 @@ struct DetailView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text(item.title).font(.title)
 
-            Text(" \(item.accomplishmentDate.formatted(date: .long, time: .omitted))")
-                            .foregroundColor(.gray)
+            Text(item.accomplishmentDate.formatted(date: .long, time: .omitted))
+                .font(.subheadline)
+                .foregroundColor(.gray)
             Text(item.details)
             
             if let impact = item.impact {

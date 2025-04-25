@@ -63,7 +63,9 @@ struct AddItemView: View {
             }
             
             
-            
+            .scrollContentBackground(.hidden)
+            .background(Color.white)
+            .environment(\.font, Font.custom("Futura-Regular", size: 14, relativeTo: .body))
             .navigationTitle("Why The Party?")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
