@@ -40,7 +40,7 @@ struct EntryCard: View {
         }
         .padding()
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white)
+        .background(Color(uiColor: .secondarySystemBackground))
         .cornerRadius(Theme.cardCornerRadius)
         .shadow(color: Theme.shadowColor,
                 radius: Theme.shadowRadius,
@@ -56,6 +56,7 @@ struct EntryCard: View {
         )
     }
 }
+
 
 // MARK: - View Model
 
@@ -138,20 +139,20 @@ struct BragBookToolbar: ToolbarContent {
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var items: [Item]
-
+    
     @State private var internalShowAddItemAlert = false
     private let externalShowAddItemAlert: Binding<Bool>?
     private var showAddItemAlert: Binding<Bool> {
         resolvedBinding(externalShowAddItemAlert, fallback: $internalShowAddItemAlert)
     }
-
+    
     @StateObject private var vm = ContentViewModel()
     @State private var selectedItem: Item? = nil
-
+    
     init(testingShowAddItemAlert: Binding<Bool>? = nil) {
         self.externalShowAddItemAlert = testingShowAddItemAlert
     }
-
+    
     // Master list view
     private var masterView: some View {
         ScrollView {
@@ -171,7 +172,7 @@ struct ContentView: View {
             .padding(.top, Theme.topPadding)
         }
     }
-
+    
     // Add-item sheet
     private var addItemSheet: some View {
         AddItemView(
@@ -191,7 +192,7 @@ struct ContentView: View {
             }
         )
     }
-
+    
     var body: some View {
         NavigationSplitView {
             Group {
@@ -215,25 +216,27 @@ struct ContentView: View {
             }
         }
         .applyNavAppearance()
-        .background(Color.white) // Ensures light background behind nav bar
         .sheet(isPresented: showAddItemAlert) {
             addItemSheet
         }
         .globalTopPadding()
     }
-}
 
-// MARK: - Helpers & Extensions
-/// Resolves an optional external binding by returning it if non-nil, otherwise returns the fallback binding.
-func resolvedBinding<Value>(_ external: Binding<Value>?, fallback: Binding<Value>) -> Binding<Value> {
-    external ?? fallback
-}
-
-// MARK: - Previews
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .modelContainer(for: Item.self, inMemory: false)
+    
+    
+    
+    // MARK: - Helpers & Extensions
+    /// Resolves an optional external binding by returning it if non-nil, otherwise returns the fallback binding.
+    func resolvedBinding<Value>(_ external: Binding<Value>?, fallback: Binding<Value>) -> Binding<Value> {
+        external ?? fallback
+    }
+    
+    // MARK: - Previews
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+                .modelContainer(for: Item.self, inMemory: false)
+        }
     }
 }
