@@ -2,61 +2,6 @@
 import SwiftUI
 import SwiftData
 
-// MARK: - Reusable Views
-
-struct TagPill: View {
-    let tag: String
-    var body: some View {
-        Text(tag)
-            .font(.custom(Theme.captionFontName, size: Theme.tagFontSize, relativeTo: .caption))
-            .foregroundColor(.white)
-            .padding(.vertical, 4)
-            .padding(.horizontal, 8)
-            .background(Theme.tagBackground)
-            .cornerRadius(8)
-            .accessibilityLabel("Tag: \(tag)")
-            .accessibilityAddTraits(.isStaticText)
-    }
-}
-
-struct EntryCard: View {
-    let item: Item
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(item.title)
-                .font(.headline)
-                .foregroundColor(Theme.primaryTextColor)
-            Text(item.accomplishmentDate.formatted(date: .long, time: .omitted))
-                .font(.subheadline)
-                .foregroundColor(Theme.primaryTextColor)
-            if !item.tags.isEmpty {
-                HStack(spacing: 6) {
-                    ForEach(item.tags, id: \.self) { t in
-                        TagPill(tag: t)
-                    }
-                }
-            }
-        }
-        .padding()
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color(uiColor: .secondarySystemBackground))
-        .cornerRadius(Theme.cardCornerRadius)
-        .shadow(color: Theme.shadowColor,
-                radius: Theme.shadowRadius,
-                x: Theme.shadowX,
-                y: Theme.shadowY)
-        .padding(.horizontal, Theme.horizontalPadding)
-        .padding(.vertical, Theme.verticalPadding)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(
-            "\(item.title), accomplished on " +
-            "\(item.accomplishmentDate.formatted(date: .long, time: .omitted))" +
-            (item.tags.isEmpty ? "" : ", tags: \(item.tags.joined(separator: ", "))")
-        )
-    }
-}
-
 
 // MARK: - View Model
 
@@ -71,22 +16,22 @@ final class ContentViewModel: ObservableObject {
     @Published var newReviewDate: Date? = nil
     @Published var newAccomplishmentDate: Date = Date()
 
-    /// Saves a new Item into the given ModelContext.
+    /// Saves a new Outcome into the given ModelContext.
     ///
-    /// - Parameter context: The SwiftData ModelContext used to insert the new Item.
+    /// - Parameter context: The SwiftData ModelContext used to insert the new Outcome.
     /// After insertion, input fields are reset.
-    func saveItem(context: ModelContext) {
+    func saveOutcome(context: ModelContext) {
         withAnimation {
-            let entry = Item(
+            let entry = Outcome(
                 creationDate: Date(),
                 title: newTitle,
+                accomplishmentDate: newAccomplishmentDate,
                 details: newDetails,
                 tags: newTags
                       .split(separator: ",")
                       .map { $0.trimmingCharacters(in: .whitespaces) },
                 impact: newImpact,
                 reviewDate: newReviewDate,
-                accomplishmentDate: newAccomplishmentDate,
                 outcome: newOutcome
             )
             context.insert(entry)
@@ -94,13 +39,13 @@ final class ContentViewModel: ObservableObject {
         }
     }
 
-    /// Deletes existing Items at the specified offsets.
+    /// Deletes existing Outcomes at the specified offsets.
     ///
     /// - Parameters:
-    ///   - offsets: IndexSet of items to remove.
-    ///   - items:   Current Items array.
+    ///   - offsets: IndexSet of outcomes to remove.
+    ///   - items:   Current Outcomes array.
     ///   - context: SwiftData ModelContext for the deletion.
-    func deleteItems(offsets: IndexSet, items: [Item], context: ModelContext) {
+    func deleteOutcomes(offsets: IndexSet, items: [Outcome], context: ModelContext) {
         withAnimation {
             for idx in offsets {
                 context.delete(items[idx])
@@ -123,12 +68,12 @@ final class ContentViewModel: ObservableObject {
 // MARK: - Toolbar
 
 struct BragBookToolbar: ToolbarContent {
-    @Binding var showingAddItem: Bool
+    @Binding var showingAddOutcome: Bool
 
     var body: some ToolbarContent {
         ToolbarItem {
-            Button(action: { showingAddItem = true }) {
-                Label("Add Item", systemImage: "plus")
+            Button(action: { showingAddOutcome = true }) {
+                Label("Add Outcome", systemImage: "plus")
             }
         }
     }
@@ -138,7 +83,7 @@ struct BragBookToolbar: ToolbarContent {
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @Query private var outcomes: [Outcome]
     
     @State private var internalShowAddItemAlert = false
     private let externalShowAddItemAlert: Binding<Bool>?
@@ -146,8 +91,10 @@ struct ContentView: View {
         resolvedBinding(externalShowAddItemAlert, fallback: $internalShowAddItemAlert)
     }
     
-    @StateObject private var vm = ContentViewModel()
-    @State private var selectedItem: Item? = nil
+    // @StateObject private var vm = ContentViewModel()
+    @State private var columnVisibility: NavigationSplitViewVisibility = .all
+    @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
+    @State private var selectedOutcome: Outcome? = nil
     
     init(testingShowAddItemAlert: Binding<Bool>? = nil) {
         self.externalShowAddItemAlert = testingShowAddItemAlert
@@ -157,16 +104,18 @@ struct ContentView: View {
     private var masterView: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
-                ForEach(items) { item in
-                    NavigationLink(value: item) {
-                        EntryCard(item: item)
+                ForEach(outcomes) { outcome in
+                    NavigationLink(value: outcome) {
+                        EntryCard(outcome: outcome)
                     }
-                    .buttonStyle(PlainButtonStyle())
+                    .bragCardStyle()
                 }
                 .onDelete { offsets in
-                    vm.deleteItems(offsets: offsets,
-                                   items: items,
-                                   context: modelContext)
+                    withAnimation {
+                        for idx in offsets {
+                            modelContext.delete(outcomes[idx])
+                        }
+                    }
                 }
             }
             .padding(.top, Theme.topPadding)
@@ -175,16 +124,9 @@ struct ContentView: View {
     
     // Add-item sheet
     private var addItemSheet: some View {
-        AddItemView(
-            newTitle: $vm.newTitle,
-            newDetails: $vm.newDetails,
-            newOutcome: $vm.newOutcome,
-            newTags: $vm.newTags,
-            newImpact: $vm.newImpact,
-            newReviewDate: $vm.newReviewDate,
-            newAccomplishmentDate: $vm.newAccomplishmentDate,
-            onSave: {
-                vm.saveItem(context: modelContext)
+        AddOutcomeView(
+            onSave: { outcome in
+                modelContext.insert(outcome)
                 showAddItemAlert.wrappedValue = false
             },
             onCancel: {
@@ -194,23 +136,24 @@ struct ContentView: View {
     }
     
     var body: some View {
-        NavigationSplitView {
-            Group {
-                if items.isEmpty {
-                    EmptyStateView()
-                } else {
-                    masterView
-                        .navigationDestination(for: Item.self) { item in
-                            DetailView(item: item)
-                        }
-                }
-            }
-            .toolbar {
-                BragBookToolbar(showingAddItem: showAddItemAlert)
+        NavigationSplitView(
+            columnVisibility: $columnVisibility,
+            preferredCompactColumn: $preferredCompactColumn
+        ) {
+            if outcomes.isEmpty {
+                EmptyStateView()
+                    .toolbar {
+                        BragBookToolbar(showingAddOutcome: showAddItemAlert)
+                    }
+            } else {
+                OutcomeListView()
+                    .toolbar {
+                        BragBookToolbar(showingAddOutcome: showAddItemAlert)
+                    }
             }
         } detail: {
-            if let item = selectedItem {
-                DetailView(item: item)
+            if let outcome = selectedOutcome {
+                OutcomeDetailView(viewModel: OutcomeDetailViewModel(outcome: outcome))
             } else {
                 DetailPlaceholderView()
             }
@@ -236,7 +179,7 @@ struct ContentView: View {
     struct ContentView_Previews: PreviewProvider {
         static var previews: some View {
             ContentView()
-                .modelContainer(for: Item.self, inMemory: false)
+                .modelContainer(for: Outcome.self, inMemory: false)
         }
     }
 }

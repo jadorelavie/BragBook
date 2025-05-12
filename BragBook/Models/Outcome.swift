@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  Outcome.swift
 //  BragBook
 //
 //  Created by Taryn Brice-Rowland on 3/10/25.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 
 @Model
-class Item {
+class Outcome {
     var creationDate: Date = Date() // Default to current date
     var title: String = "Untitled" // Default title
     var details: String = "" // Default empty string
@@ -23,11 +23,12 @@ class Item {
 
     init(creationDate: Date = Date(),
          title: String = "Untitled",
+         accomplishmentDate: Date = Date(),
          details: String = "",
          tags: [String] = [],
          impact: Int? = nil,
          reviewDate: Date? = nil,
-         accomplishmentDate: Date = Date(),
+
          outcome: String? = nil) {
         self.creationDate = creationDate
         self.title = title

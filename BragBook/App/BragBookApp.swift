@@ -18,7 +18,7 @@ struct BragBookApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: Item.self)
+                .modelContainer(for: Outcome.self)
                 .environment(\.font, .custom("GillSans-Regular", size: 16))
                 .foregroundColor(Color(hex: "#1f3c6b"))
             }
