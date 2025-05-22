@@ -8,28 +8,44 @@
 import Foundation
 import SwiftData
 
+// OutcomeType enum used as a validation flag to indicate the state of the outcome
+enum OutcomeType: String, Codable {
+    case accomplishment
+    case lesson
+    case notSet
+}
+
 @Model
 class Outcome {
-    var creationDate: Date = Date() // Default to current date
-    var title: String = "Untitled" // Default title
-    var details: String = "" // Default empty string
-    var tags: [String] = [] // Default empty array
-
-    // New fields
-    var impact: Int? = nil // Optional impact rating (0-5)
-    var reviewDate: Date? = nil // Optional review date
+    var outcomeID: UUID = UUID()
+    var entryID: UUID = UUID()
+    var creationDate: Date = Date()
+    var title: String = "Untitled"
+    var details: String = ""
+    var tags: [String] = []
+    var impact: Int? = nil
+    var reviewDate: Date? = nil
     var accomplishmentDate: Date = Date()
     var outcome: String? = nil
+    // Type property used as a validation flag
+    var type: OutcomeType = OutcomeType.notSet
+    var jobID: UUID? = nil
+    
 
-    init(creationDate: Date = Date(),
+    init(outcomeID: UUID = UUID(),
+         entryID: UUID = UUID(),
+         creationDate: Date = Date(),
          title: String = "Untitled",
          accomplishmentDate: Date = Date(),
          details: String = "",
          tags: [String] = [],
          impact: Int? = nil,
          reviewDate: Date? = nil,
-
-         outcome: String? = nil) {
+         outcome: String? = nil,
+         type: OutcomeType = .notSet,
+         jobID: UUID? = nil) {
+        self.outcomeID = outcomeID
+        self.entryID = entryID
         self.creationDate = creationDate
         self.title = title
         self.details = details
@@ -38,5 +54,7 @@ class Outcome {
         self.reviewDate = reviewDate
         self.accomplishmentDate = accomplishmentDate
         self.outcome = outcome
+        self.type = type
+        self.jobID = jobID
     }
 }

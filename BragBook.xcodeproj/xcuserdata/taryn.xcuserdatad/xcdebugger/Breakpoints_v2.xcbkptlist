@@ -23,17 +23,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A1DDFC88-F809-4410-BB51-76B6F01CF085"
+            uuid = "971DA369-F092-4B8D-A2E9-F8E97F02683F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BragBook/Models/Outcome.swift"
+            filePath = "BragBook/Components/ViewModels/FeedDetail+ViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "init(creationDate:title:accomplishmentDate:details:tags:impact:reviewDate:outcome:)"
-            landmarkType = "7">
+            startingLineNumber = "6"
+            endingLineNumber = "6"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

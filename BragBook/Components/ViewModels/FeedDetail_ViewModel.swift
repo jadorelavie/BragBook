@@ -7,16 +7,24 @@
 import Foundation
 import SwiftUI
 
-class OutcomeDetailViewModel: ObservableObject {
-    let outcome: Outcome
-    
+class FeedDetailViewModel: ObservableObject {
+    let feedItem: FeedItem
+
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
-        return formatter.string(from: outcome.accomplishmentDate)
+        switch feedItem {
+        case .outcome(let outcome):
+            return formatter.string(from: outcome.accomplishmentDate)
+        case .entry(let entry):
+            return formatter.string(from: entry.entryDate)
+        case .task(let task):
+            return formatter.string(from: task.createdAt)
+        }
     }
 
     var impactDescriptionText: String {
+        guard case .outcome(let outcome) = feedItem else { return "" }
         switch outcome.impact ?? -1 {
         case 0:
             return "This hurt; it didn't help."
@@ -35,8 +43,7 @@ class OutcomeDetailViewModel: ObservableObject {
         }
     }
 
-    init(outcome: Outcome) {
-        self.outcome = outcome
+    init(feedItem: FeedItem) {
+        self.feedItem = feedItem
     }
 }
-

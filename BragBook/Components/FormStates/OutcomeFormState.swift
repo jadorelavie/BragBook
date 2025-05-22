@@ -20,4 +20,24 @@ class OutcomeFormState: ObservableObject {
     var isValid: Bool {
         !title.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
+
+    func populate(from outcome: Outcome) {
+        title = outcome.title
+        accomplishmentDate = outcome.accomplishmentDate
+        details = outcome.details
+        tags = outcome.tags.joined(separator: ", ")
+        impact = outcome.impact
+        reviewDate = outcome.reviewDate
+        self.outcome = outcome.type.rawValue
+    }
+
+    func reset() {
+        title = ""
+        accomplishmentDate = Date()
+        details = ""
+        tags = ""
+        impact = nil
+        reviewDate = nil
+        outcome = ""
+    }
 }

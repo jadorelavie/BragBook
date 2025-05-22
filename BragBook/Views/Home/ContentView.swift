@@ -3,77 +3,15 @@ import SwiftUI
 import SwiftData
 
 
-// MARK: - View Model
-
-/// ViewModel for ContentView.
-/// Manages the state for creating new entries and handles persistence.
-final class ContentViewModel: ObservableObject {
-    @Published var newTitle: String = ""
-    @Published var newDetails: String = ""
-    @Published var newOutcome: String = ""
-    @Published var newTags: String = ""
-    @Published var newImpact: Int?    = nil
-    @Published var newReviewDate: Date? = nil
-    @Published var newAccomplishmentDate: Date = Date()
-
-    /// Saves a new Outcome into the given ModelContext.
-    ///
-    /// - Parameter context: The SwiftData ModelContext used to insert the new Outcome.
-    /// After insertion, input fields are reset.
-    func saveOutcome(context: ModelContext) {
-        withAnimation {
-            let entry = Outcome(
-                creationDate: Date(),
-                title: newTitle,
-                accomplishmentDate: newAccomplishmentDate,
-                details: newDetails,
-                tags: newTags
-                      .split(separator: ",")
-                      .map { $0.trimmingCharacters(in: .whitespaces) },
-                impact: newImpact,
-                reviewDate: newReviewDate,
-                outcome: newOutcome
-            )
-            context.insert(entry)
-            resetFields()
-        }
-    }
-
-    /// Deletes existing Outcomes at the specified offsets.
-    ///
-    /// - Parameters:
-    ///   - offsets: IndexSet of outcomes to remove.
-    ///   - items:   Current Outcomes array.
-    ///   - context: SwiftData ModelContext for the deletion.
-    func deleteOutcomes(offsets: IndexSet, items: [Outcome], context: ModelContext) {
-        withAnimation {
-            for idx in offsets {
-                context.delete(items[idx])
-            }
-        }
-    }
-
-    /// Resets all entry input fields to default values.
-    private func resetFields() {
-        newTitle = ""
-        newDetails = ""
-        newOutcome = ""
-        newTags = ""
-        newImpact = nil
-        newReviewDate = nil
-        newAccomplishmentDate = Date()
-    }
-}
-
 // MARK: - Toolbar
 
 struct BragBookToolbar: ToolbarContent {
-    @Binding var showingAddOutcome: Bool
+    let onAddEntry: () -> Void
 
     var body: some ToolbarContent {
         ToolbarItem {
-            Button(action: { showingAddOutcome = true }) {
-                Label("Add Outcome", systemImage: "plus")
+            Button(action: { onAddEntry() }) {
+                Label("Add Entry", systemImage: "plus")
             }
         }
     }
@@ -83,86 +21,155 @@ struct BragBookToolbar: ToolbarContent {
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var outcomes: [Outcome]
     
-    @State private var internalShowAddItemAlert = false
+ /*   @State private var internalShowAddItemAlert = false
     private let externalShowAddItemAlert: Binding<Bool>?
     private var showAddItemAlert: Binding<Bool> {
         resolvedBinding(externalShowAddItemAlert, fallback: $internalShowAddItemAlert)
-    }
+    } */
     
     // @StateObject private var vm = ContentViewModel()
     @State private var columnVisibility: NavigationSplitViewVisibility = .all
     @State private var preferredCompactColumn: NavigationSplitViewColumn = .sidebar
-    @State private var selectedOutcome: Outcome? = nil
     
-    init(testingShowAddItemAlert: Binding<Bool>? = nil) {
-        self.externalShowAddItemAlert = testingShowAddItemAlert
+    // MARK: - Sheet State
+    @StateObject private var entryFormState = EntryFormState()
+    @StateObject private var outcomeFormState = OutcomeFormState()
+    @StateObject private var taskFormState = TaskFormState()
+    
+    @State private var selectedType: FeedItemType? = nil
+    
+    @State private var feedItems: [FeedItem] = []
+
+    // MARK: - Sheet Presentation Views
+    @ViewBuilder
+    private var activeSheet: some View {
+        switch selectedType {
+        case .entry:
+            AddEditEntrySheet(
+                formState: entryFormState,
+                isEditing: false,
+                onSave: {
+                    FeedItemService().createFeedItem(
+                        ofType: .entry,
+                        with: FeedItemData(
+                            title: entryFormState.title,
+                            content: entryFormState.content,
+                            date: entryFormState.entryDate,
+                            impact: nil,
+                            tags: entryFormState.tags
+                                .split(separator: ",")
+                                .map { $0.trimmingCharacters(in: .whitespaces) },
+                            status: nil
+                        ),
+                        context: modelContext
+                    )
+                    selectedType = nil
+                    entryFormState.reset()
+                },
+                onCancel: {
+                    selectedType = nil
+                    entryFormState.reset()
+                }
+            )
+        case .outcome:
+            AddEditOutcomeSheet(
+                formState: outcomeFormState,
+                isEditing: false,
+                onSave: {
+                    FeedItemService().createFeedItem(ofType: .outcome, with: FeedItemData(
+                        title: outcomeFormState.title,
+                        content: outcomeFormState.details,
+                        date: outcomeFormState.accomplishmentDate,
+                        impact: outcomeFormState.impact,
+                        tags: outcomeFormState.tags.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) },
+                        status: nil
+                    ), context: modelContext)
+                    selectedType = nil
+                    outcomeFormState.reset()
+                },
+                onCancel: {
+                    selectedType = nil
+                    outcomeFormState.reset()
+                }
+            )
+        case .task:
+            AddEditTaskSheet(
+                formState: taskFormState,
+                isEditing: false,
+                onSave: {
+                    FeedItemService().createFeedItem(ofType: .task, with: FeedItemData(
+                        title: taskFormState.taskTitle,
+                        content: taskFormState.taskDescription,
+                        date: nil,
+                        impact: nil,
+                        tags: taskFormState.tags.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) },
+                        status: taskFormState.status
+                    ), context: modelContext)
+                    selectedType = nil
+                    taskFormState.reset()
+                },
+                onCancel: {
+                    selectedType = nil
+                    taskFormState.reset()
+                }
+            )
+        case .none:
+            EmptyView()
+        }
     }
+    
+   /* init(testingShowAddItemAlert: Binding<Bool>? = nil) {
+        self.externalShowAddItemAlert = testingShowAddItemAlert
+    } */
     
     // Master list view
     private var masterView: some View {
-        ScrollView {
+        /* ScrollView {
             LazyVStack(spacing: 0) {
-                ForEach(outcomes) { outcome in
-                    NavigationLink(value: outcome) {
-                        EntryCard(outcome: outcome)
-                    }
-                    .bragCardStyle()
-                }
-                .onDelete { offsets in
-                    withAnimation {
-                        for idx in offsets {
-                            modelContext.delete(outcomes[idx])
-                        }
+                ForEach(feedItems) { item in
+                    switch item {
+                    case .entry(let entry):
+                        FeedCard(entry: entry)
+                    case .outcome(let outcome):
+                        FeedCard(outcome: outcome)
+                    case .task(let task):
+                        FeedCard(task: task)
                     }
                 }
             }
             .padding(.top, Theme.topPadding)
+        } */
+        ZStack {
+            Color.teal
+                .edgesIgnoringSafeArea(.all)
+            Text("Hello world.")
+                .foregroundColor(.white)
+                .font(.largeTitle)
         }
     }
     
-    // Add-item sheet
-    private var addItemSheet: some View {
-        AddOutcomeView(
-            onSave: { outcome in
-                modelContext.insert(outcome)
-                showAddItemAlert.wrappedValue = false
-            },
-            onCancel: {
-                showAddItemAlert.wrappedValue = false
-            }
-        )
-    }
-    
+        
     var body: some View {
         NavigationSplitView(
             columnVisibility: $columnVisibility,
             preferredCompactColumn: $preferredCompactColumn
         ) {
-            if outcomes.isEmpty {
-                EmptyStateView()
-                    .toolbar {
-                        BragBookToolbar(showingAddOutcome: showAddItemAlert)
-                    }
-            } else {
-                OutcomeListView()
-                    .toolbar {
-                        BragBookToolbar(showingAddOutcome: showAddItemAlert)
-                    }
-            }
+            masterView
+                .toolbar {
+                   BragBookToolbar(onAddEntry: { selectedType = .entry })
+                }
         } detail: {
-            if let outcome = selectedOutcome {
-                OutcomeDetailView(viewModel: OutcomeDetailViewModel(outcome: outcome))
-            } else {
-                DetailPlaceholderView()
-            }
+            Detail_View()
         }
         .applyNavAppearance()
-        .sheet(isPresented: showAddItemAlert) {
-            addItemSheet
+        .sheet(item: $selectedType) { _ in
+            activeSheet
         }
         .globalTopPadding()
+        .task {
+            feedItems = await FeedViewModel().loadFeedItems(context: modelContext)
+        }
     }
 
     
