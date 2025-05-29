@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0B6B4C2DE8CBCB005E9110 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B4B2DE8CBC1005E9110 /* .gitignore */; };
+		8B0B6B5F2DE8CD85005E9110 /* Accomplishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B4D2DE8CD85005E9110 /* Accomplishment.swift */; };
+		8B0B6B602DE8CD85005E9110 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B4E2DE8CD85005E9110 /* JournalEntry.swift */; };
+		8B0B6B612DE8CD85005E9110 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B5A2DE8CD85005E9110 /* ContentView.swift */; };
+		8B0B6B622DE8CD85005E9110 /* FeedItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B5D2DE8CD85005E9110 /* FeedItemType.swift */; };
+		8B0B6B632DE8CD85005E9110 /* AddEditJournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B592DE8CD85005E9110 /* AddEditJournalEntryView.swift */; };
+		8B0B6B642DE8CD85005E9110 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B522DE8CD85005E9110 /* Persistence.swift */; };
+		8B0B6B652DE8CD85005E9110 /* FeedItemRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B5B2DE8CD85005E9110 /* FeedItemRowView.swift */; };
+		8B0B6B662DE8CD85005E9110 /* JournalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B552DE8CD85005E9110 /* JournalViewModel.swift */; };
+		8B0B6B672DE8CD85005E9110 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B542DE8CD85005E9110 /* FeedViewModel.swift */; };
+		8B0B6B682DE8CD85005E9110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B502DE8CD85005E9110 /* Assets.xcassets */; };
+		8B0B6B6A2DE8CDA1005E9110 /* BragBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */; };
+		8B0B6B702DE8CDF5005E9110 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B6F2DE8CDF5005E9110 /* Info.plist */; };
 		8BF8DE042DA2B8F900DD509F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -31,28 +44,24 @@
 		8B02188E2D7F40D500B27827 /* BragBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BragBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0218A22D7F40D600B27827 /* BragBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BragBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0218AC2D7F40D600B27827 /* BragBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BragBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B0B6B4B2DE8CBC1005E9110 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8B0B6B4D2DE8CD85005E9110 /* Accomplishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accomplishment.swift; sourceTree = "<group>"; };
+		8B0B6B4E2DE8CD85005E9110 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		8B0B6B502DE8CD85005E9110 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8B0B6B522DE8CD85005E9110 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		8B0B6B542DE8CD85005E9110 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		8B0B6B552DE8CD85005E9110 /* JournalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewModel.swift; sourceTree = "<group>"; };
+		8B0B6B592DE8CD85005E9110 /* AddEditJournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditJournalEntryView.swift; sourceTree = "<group>"; };
+		8B0B6B5A2DE8CD85005E9110 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8B0B6B5B2DE8CD85005E9110 /* FeedItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemRowView.swift; sourceTree = "<group>"; };
+		8B0B6B5D2DE8CD85005E9110 /* FeedItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemType.swift; sourceTree = "<group>"; };
+		8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BragBookApp.swift; sourceTree = SOURCE_ROOT; };
+		8B0B6B6B2DE8CDC9005E9110 /* BragBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BragBook.entitlements; sourceTree = "<group>"; };
+		8B0B6B6F2DE8CDF5005E9110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8B14827B2DBFC5CD00268E8E /* Exceptions for "BragBook" folder in "BragBook" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 8B02188D2D7F40D500B27827 /* BragBook */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		8B0218902D7F40D500B27827 /* BragBook */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				8B14827B2DBFC5CD00268E8E /* Exceptions for "BragBook" folder in "BragBook" target */,
-			);
-			path = BragBook;
-			sourceTree = "<group>";
-		};
 		8B0218A52D7F40D600B27827 /* BragBookTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BragBookTests;
@@ -93,8 +102,12 @@
 		8B0218852D7F40D500B27827 = {
 			isa = PBXGroup;
 			children = (
+				8B0B6B4B2DE8CBC1005E9110 /* .gitignore */,
+				8B0B6B6F2DE8CDF5005E9110 /* Info.plist */,
+				8B0B6B6B2DE8CDC9005E9110 /* BragBook.entitlements */,
+				8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */,
+				8B0B6B5E2DE8CD85005E9110 /* Components */,
 				8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */,
-				8B0218902D7F40D500B27827 /* BragBook */,
 				8B0218A52D7F40D600B27827 /* BragBookTests */,
 				8B0218AF2D7F40D600B27827 /* BragBookUITests */,
 				8B02188F2D7F40D500B27827 /* Products */,
@@ -111,6 +124,79 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		8B0B6B4F2DE8CD85005E9110 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8B0B6B5D2DE8CD85005E9110 /* FeedItemType.swift */,
+				8B0B6B4D2DE8CD85005E9110 /* Accomplishment.swift */,
+				8B0B6B4E2DE8CD85005E9110 /* JournalEntry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8B0B6B512DE8CD85005E9110 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B0B6B502DE8CD85005E9110 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8B0B6B532DE8CD85005E9110 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8B0B6B522DE8CD85005E9110 /* Persistence.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		8B0B6B562DE8CD85005E9110 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8B0B6B542DE8CD85005E9110 /* FeedViewModel.swift */,
+				8B0B6B552DE8CD85005E9110 /* JournalViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8B0B6B572DE8CD85005E9110 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		8B0B6B582DE8CD85005E9110 /* Journal */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Journal;
+			sourceTree = "<group>";
+		};
+		8B0B6B5C2DE8CD85005E9110 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8B0B6B572DE8CD85005E9110 /* Home */,
+				8B0B6B582DE8CD85005E9110 /* Journal */,
+				8B0B6B592DE8CD85005E9110 /* AddEditJournalEntryView.swift */,
+				8B0B6B5A2DE8CD85005E9110 /* ContentView.swift */,
+				8B0B6B5B2DE8CD85005E9110 /* FeedItemRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8B0B6B5E2DE8CD85005E9110 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8B0B6B4F2DE8CD85005E9110 /* Models */,
+				8B0B6B512DE8CD85005E9110 /* Resources */,
+				8B0B6B532DE8CD85005E9110 /* Shared */,
+				8B0B6B562DE8CD85005E9110 /* ViewModels */,
+				8B0B6B5C2DE8CD85005E9110 /* Views */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,9 +211,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				8B0218902D7F40D500B27827 /* BragBook */,
 			);
 			name = BragBook;
 			packageProductDependencies = (
@@ -231,6 +314,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0B6B702DE8CDF5005E9110 /* Info.plist in Resources */,
+				8B0B6B4C2DE8CBCB005E9110 /* .gitignore in Resources */,
+				8B0B6B682DE8CD85005E9110 /* Assets.xcassets in Resources */,
 				8BF8DE042DA2B8F900DD509F /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,6 +342,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B0B6B5F2DE8CD85005E9110 /* Accomplishment.swift in Sources */,
+				8B0B6B602DE8CD85005E9110 /* JournalEntry.swift in Sources */,
+				8B0B6B612DE8CD85005E9110 /* ContentView.swift in Sources */,
+				8B0B6B622DE8CD85005E9110 /* FeedItemType.swift in Sources */,
+				8B0B6B6A2DE8CDA1005E9110 /* BragBookApp.swift in Sources */,
+				8B0B6B632DE8CD85005E9110 /* AddEditJournalEntryView.swift in Sources */,
+				8B0B6B642DE8CD85005E9110 /* Persistence.swift in Sources */,
+				8B0B6B652DE8CD85005E9110 /* FeedItemRowView.swift in Sources */,
+				8B0B6B662DE8CD85005E9110 /* JournalViewModel.swift in Sources */,
+				8B0B6B672DE8CD85005E9110 /* FeedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
