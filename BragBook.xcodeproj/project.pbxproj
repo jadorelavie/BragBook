@@ -19,7 +19,6 @@
 		8B0B6B672DE8CD85005E9110 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B542DE8CD85005E9110 /* FeedViewModel.swift */; };
 		8B0B6B682DE8CD85005E9110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B502DE8CD85005E9110 /* Assets.xcassets */; };
 		8B0B6B6A2DE8CDA1005E9110 /* BragBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */; };
-		8B0B6B8B2DE926EE005E9110 /* File.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B8A2DE926EE005E9110 /* File.txt */; };
 		8BF8DE042DA2B8F900DD509F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -318,7 +317,6 @@
 			files = (
 				8B0B6B4C2DE8CBCB005E9110 /* .gitignore in Resources */,
 				8B0B6B682DE8CD85005E9110 /* Assets.xcassets in Resources */,
-				8B0B6B8B2DE926EE005E9110 /* File.txt in Resources */,
 				8BF8DE042DA2B8F900DD509F /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,7 +398,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BragBook/info.plist;
+				INFOPLIST_FILE = info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BragBook;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -421,10 +419,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RogueTBR.BragBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Debug;
@@ -442,7 +441,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = BragBook/info.plist;
+				INFOPLIST_FILE = info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = BragBook;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -463,10 +462,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RogueTBR.BragBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
