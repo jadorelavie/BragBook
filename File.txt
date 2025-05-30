@@ -4,6 +4,9 @@
 <dict>
 	<key>aps-environment</key>
 	<string>development</string>
+	<key>com.apple.developer.applesignin</key>
+	<string>/Users/taryn/Dev/BragBook/BragBook.xcodeproj One of the paths in DEVELOPMENT_ASSET_PATHS does not exist: /Users/taryn/Dev/BragBook/BragBook/Preview Content
+</string>
 	<key>com.apple.developer.aps-environment</key>
 	<string>development</string>
 	<key>com.apple.developer.icloud-container-identifiers</key>

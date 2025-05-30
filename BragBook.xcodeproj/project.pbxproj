@@ -19,7 +19,7 @@
 		8B0B6B672DE8CD85005E9110 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B542DE8CD85005E9110 /* FeedViewModel.swift */; };
 		8B0B6B682DE8CD85005E9110 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B502DE8CD85005E9110 /* Assets.xcassets */; };
 		8B0B6B6A2DE8CDA1005E9110 /* BragBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */; };
-		8B0B6B702DE8CDF5005E9110 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B6F2DE8CDF5005E9110 /* Info.plist */; };
+		8B0B6B8B2DE926EE005E9110 /* File.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B8A2DE926EE005E9110 /* File.txt */; };
 		8BF8DE042DA2B8F900DD509F /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +56,9 @@
 		8B0B6B5B2DE8CD85005E9110 /* FeedItemRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemRowView.swift; sourceTree = "<group>"; };
 		8B0B6B5D2DE8CD85005E9110 /* FeedItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemType.swift; sourceTree = "<group>"; };
 		8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BragBookApp.swift; sourceTree = SOURCE_ROOT; };
-		8B0B6B6B2DE8CDC9005E9110 /* BragBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BragBook.entitlements; sourceTree = "<group>"; };
 		8B0B6B6F2DE8CDF5005E9110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B0B6B8A2DE926EE005E9110 /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
+		8B0B6B8C2DE927B1005E9110 /* BragBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BragBook.entitlements; sourceTree = "<group>"; };
 		8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,13 +105,14 @@
 			children = (
 				8B0B6B4B2DE8CBC1005E9110 /* .gitignore */,
 				8B0B6B6F2DE8CDF5005E9110 /* Info.plist */,
-				8B0B6B6B2DE8CDC9005E9110 /* BragBook.entitlements */,
+				8B0B6B8A2DE926EE005E9110 /* File.txt */,
 				8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */,
 				8B0B6B5E2DE8CD85005E9110 /* Components */,
 				8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */,
 				8B0218A52D7F40D600B27827 /* BragBookTests */,
 				8B0218AF2D7F40D600B27827 /* BragBookUITests */,
 				8B02188F2D7F40D500B27827 /* Products */,
+				8B0B6B8C2DE927B1005E9110 /* BragBook.entitlements */,
 			);
 			sourceTree = "<group>";
 		};
@@ -314,9 +316,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B0B6B702DE8CDF5005E9110 /* Info.plist in Resources */,
 				8B0B6B4C2DE8CBCB005E9110 /* .gitignore in Resources */,
 				8B0B6B682DE8CD85005E9110 /* Assets.xcassets in Resources */,
+				8B0B6B8B2DE926EE005E9110 /* File.txt in Resources */,
 				8BF8DE042DA2B8F900DD509F /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,14 +390,13 @@
 		8B0218B62D7F40D600B27827 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = BragBook/BragBook.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = BragBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"BragBook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -431,14 +432,13 @@
 		8B0218B72D7F40D600B27827 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
-				CODE_SIGN_ENTITLEMENTS = BragBook/BragBook.entitlements;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = BragBook.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"BragBook/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
