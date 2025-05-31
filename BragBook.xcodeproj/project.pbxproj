@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B047E792DEA747800538AA3 /* BragBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B047E772DEA747800538AA3 /* BragBook.xcdatamodeld */; };
 		8B0B6B4C2DE8CBCB005E9110 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8B0B6B4B2DE8CBC1005E9110 /* .gitignore */; };
 		8B0B6B5F2DE8CD85005E9110 /* Accomplishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B4D2DE8CD85005E9110 /* Accomplishment.swift */; };
 		8B0B6B602DE8CD85005E9110 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0B6B4E2DE8CD85005E9110 /* JournalEntry.swift */; };
@@ -43,6 +44,7 @@
 		8B02188E2D7F40D500B27827 /* BragBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BragBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0218A22D7F40D600B27827 /* BragBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BragBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0218AC2D7F40D600B27827 /* BragBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BragBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B047E782DEA747800538AA3 /* BragBook_1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BragBook_1.xcdatamodel; sourceTree = "<group>"; };
 		8B0B6B4B2DE8CBC1005E9110 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8B0B6B4D2DE8CD85005E9110 /* Accomplishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accomplishment.swift; sourceTree = "<group>"; };
 		8B0B6B4E2DE8CD85005E9110 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
@@ -56,7 +58,6 @@
 		8B0B6B5D2DE8CD85005E9110 /* FeedItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemType.swift; sourceTree = "<group>"; };
 		8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BragBookApp.swift; sourceTree = SOURCE_ROOT; };
 		8B0B6B6F2DE8CDF5005E9110 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8B0B6B8A2DE926EE005E9110 /* File.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = File.txt; sourceTree = "<group>"; };
 		8B0B6B8C2DE927B1005E9110 /* BragBook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BragBook.entitlements; sourceTree = "<group>"; };
 		8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,7 +105,6 @@
 			children = (
 				8B0B6B4B2DE8CBC1005E9110 /* .gitignore */,
 				8B0B6B6F2DE8CDF5005E9110 /* Info.plist */,
-				8B0B6B8A2DE926EE005E9110 /* File.txt */,
 				8B0B6B692DE8CDA1005E9110 /* BragBookApp.swift */,
 				8B0B6B5E2DE8CD85005E9110 /* Components */,
 				8BF8DE032DA2B8F900DD509F /* Launch Screen.storyboard */,
@@ -139,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				8B0B6B502DE8CD85005E9110 /* Assets.xcassets */,
+				8B047E772DEA747800538AA3 /* BragBook.xcdatamodeld */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -344,6 +345,7 @@
 			files = (
 				8B0B6B5F2DE8CD85005E9110 /* Accomplishment.swift in Sources */,
 				8B0B6B602DE8CD85005E9110 /* JournalEntry.swift in Sources */,
+				8B047E792DEA747800538AA3 /* BragBook.xcdatamodeld in Sources */,
 				8B0B6B612DE8CD85005E9110 /* ContentView.swift in Sources */,
 				8B0B6B622DE8CD85005E9110 /* FeedItemType.swift in Sources */,
 				8B0B6B6A2DE8CDA1005E9110 /* BragBookApp.swift in Sources */,
@@ -719,6 +721,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B047E772DEA747800538AA3 /* BragBook.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B047E782DEA747800538AA3 /* BragBook_1.xcdatamodel */,
+			);
+			currentVersion = 8B047E782DEA747800538AA3 /* BragBook_1.xcdatamodel */;
+			path = BragBook.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B0218862D7F40D500B27827 /* Project object */;
 }

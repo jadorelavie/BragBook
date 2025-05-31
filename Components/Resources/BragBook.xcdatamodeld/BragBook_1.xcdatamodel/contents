@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModelStore.swift" documentVersion="1.0" lastSavedToolsVersion="22652" systemVersion="23E214" minimumToolsVersion="Xcode 4.3" macOSVersion="14.4" iOSVersion="17.4">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23788" systemVersion="24E263" minimumToolsVersion="Xcode 9.0" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="JournalEntryEntity" representedClassName="JournalEntryEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="id" attributeType="UUID" usesScalarValueType="NO" nonOptional="YES"/>
-        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO" nonOptional="YES"/>
-        <attribute name="title" attributeType="String" usesScalarValueType="NO" nonOptional="YES"/>
-        <attribute name="text" attributeType="String" usesScalarValueType="NO" nonOptional="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="text" attributeType="String"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="title" attributeType="String"/>
     </entity>
 </model>

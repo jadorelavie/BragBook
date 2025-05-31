@@ -39,7 +39,9 @@ struct AddEditJournalEntryView: View {
                 },
                 trailing: Button("Save") {
                     if let entry = entryToEdit {
-                        viewModel.updateEntry(entry, title: title, text: text, date: date)
+                        // Build a new JournalEntry struct with updated fields but same id
+                        let updatedEntry = JournalEntry(id: entry.id, title: title, text: text, date: date)
+                        viewModel.updateEntry(updatedEntry)
                     } else {
                         viewModel.addEntry(title: title, text: text, date: date)
                     }
@@ -60,12 +62,12 @@ struct AddEditJournalEntryView: View {
 struct AddEditJournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
         // For adding a new entry
-        AddEditJournalEntryView(viewModel: JournalViewModel())
+        AddEditJournalEntryView(viewModel: JournalViewModel(context: PersistenceController.preview.container.viewContext))
         
         // For editing an existing entry
         // Creating a dummy JournalEntry for preview purposes.
         // Note: In a real app, JournalEntry might have more complex initialization or be a class.
         // For this struct, direct memberwise initialization is fine.
-        AddEditJournalEntryView(viewModel: JournalViewModel(), entryToEdit: JournalEntry(id: UUID(), title: "Sample Title", text: "This is some sample text for the journal entry.", date: Date()))
+        AddEditJournalEntryView(viewModel: JournalViewModel(context: PersistenceController.preview.container.viewContext), entryToEdit: JournalEntry(id: UUID(), title: "Sample Title", text: "This is some sample text for the journal entry.", date: Date()))
     }
 }
